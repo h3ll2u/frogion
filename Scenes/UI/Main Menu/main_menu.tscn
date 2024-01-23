@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://blumb4flpy3x2"]
+
+[ext_resource type="PackedScene" uid="uid://dl0f1jdqvxwor" path="res://Scenes/Levels/Back Ground/bg.tscn" id="1_42ui2"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 354.0
+offset_top = 110.0
+offset_right = 886.0
+offset_bottom = 642.0
+
+[node name="Play" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -179.0
+offset_right = 178.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Play"
+
+[node name="Load" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 220.0
+offset_right = 442.0
+offset_bottom = 327.0
+theme_override_font_sizes/font_size = 70
+text = "Load"
+
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 357.0
+offset_right = 441.0
+offset_bottom = 464.0
+theme_override_font_sizes/font_size = 70
+text = "Quit
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 299.0
+offset_top = 27.0
+offset_right = 945.0
+offset_bottom = 123.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.639216, 0.784314, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.694118, 0.34902, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "FROG VERSUS RUSSES"
+
+[node name="BG" parent="." instance=ExtResource("1_42ui2")]
