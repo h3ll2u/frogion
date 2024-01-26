@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://cymj1iru0ct2i"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Main Menu/intro.gd" id="1_o0l2i"]
+[ext_resource type="Texture2D" uid="uid://bm5tfangorupx" path="res://Assets/BackGrounds/Background layers/Layer_0010_1.png" id="2_247j2"]
+[ext_resource type="Texture2D" uid="uid://ce0lc4qk4sb3x" path="res://Assets/BackGrounds/Background layers/Layer_0011_0.png" id="3_dgdpr"]
+[ext_resource type="Texture2D" uid="uid://ygkxgcnrtokt" path="res://Assets/BackGrounds/Background layers/Layer_0008_3.png" id="4_dtsio"]
+[ext_resource type="Texture2D" uid="uid://dpjyfw2yfjgce" path="res://Assets/BackGrounds/Background layers/Layer_0007_Lights.png" id="5_anqiy"]
+[ext_resource type="Texture2D" uid="uid://chjb3o1itd5jr" path="res://Assets/BackGrounds/Background layers/Layer_0006_4.png" id="6_agylm"]
+[ext_resource type="Texture2D" uid="uid://bjs02prfgi51r" path="res://Assets/BackGrounds/Background layers/Layer_0005_5.png" id="7_cturn"]
+[ext_resource type="Texture2D" uid="uid://fhknj7y2cblu" path="res://Assets/BackGrounds/Background layers/Layer_0004_Lights.png" id="8_hypv6"]
+[ext_resource type="Texture2D" uid="uid://bqvsmp5ynyi68" path="res://Assets/BackGrounds/Background layers/Layer_0003_6.png" id="9_pfnlg"]
+[ext_resource type="Texture2D" uid="uid://b8xkqvpbnxyrl" path="res://Assets/BackGrounds/Background layers/Layer_0002_7.png" id="10_kxw8g"]
+[ext_resource type="Texture2D" uid="uid://b3x2gjd754fas" path="res://Assets/BackGrounds/Background layers/Layer_0001_8.png" id="11_smeke"]
+[ext_resource type="Texture2D" uid="uid://b1fmvpdoeeox5" path="res://Assets/BackGrounds/Background layers/Layer_0000_9.png" id="12_7pigi"]
+
+[sub_resource type="Animation" id="Animation_f8g85"]
+resource_name = "label_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vyt5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fn065"]
+_data = {
+"RESET": SubResource("Animation_vyt5q"),
+"label_fade_in": SubResource("Animation_f8g85")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_o0l2i")
+
+[node name="BG" type="ParallaxBackground" parent="."]
+offset = Vector2(663, 87)
+scale = Vector2(1.6, 1.6)
+transform = Transform2D(1.6, 0, 0, 1.6, 663, 87)
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer1"]
+texture = ExtResource("2_247j2")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer2"]
+position = Vector2(72.2623, -61.75)
+scale = Vector2(1.15574, 1.15574)
+texture = ExtResource("3_dgdpr")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer3"]
+texture = ExtResource("4_dtsio")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer4"]
+texture = ExtResource("5_anqiy")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer5"]
+texture = ExtResource("6_agylm")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer6"]
+texture = ExtResource("7_cturn")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer7"]
+texture = ExtResource("8_hypv6")
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(886, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer8"]
+texture = ExtResource("9_pfnlg")
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer9"]
+texture = ExtResource("10_kxw8g")
+
+[node name="ParallaxLayer10" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer10"]
+texture = ExtResource("11_smeke")
+
+[node name="ParallaxLayer11" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer11"]
+texture = ExtResource("12_7pigi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fn065")
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 84.0
+offset_top = 293.0
+offset_right = 1164.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(0, 0.541176, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.623529, 0.827451, 0, 1)
+theme_override_font_sizes/font_size = 160
+text = "FROG VERSUS RUSSES"

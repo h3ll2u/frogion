@@ -19,17 +19,19 @@ scale = Vector2(1.6, 1.6)
 transform = Transform2D(1.6, 0, 0, 1.6, 663, 143)
 script = ExtResource("1_apvh0")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(928, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
-texture = ExtResource("1_avjy2")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer1"]
+texture = ExtResource("2_5stob")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
-texture = ExtResource("2_5stob")
+position = Vector2(72.2623, -61.75)
+scale = Vector2(1.15574, 1.15574)
+texture = ExtResource("1_avjy2")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.2, 1)

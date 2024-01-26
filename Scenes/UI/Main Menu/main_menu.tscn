@@ -1,8 +1,131 @@
-[gd_scene load_steps=2 format=3 uid="uid://blumb4flpy3x2"]
+[gd_scene load_steps=16 format=3 uid="uid://blumb4flpy3x2"]
 
+[ext_resource type="Script" path="res://Scenes/UI/Main Menu/main_menu.gd" id="1_5u1hq"]
 [ext_resource type="PackedScene" uid="uid://dl0f1jdqvxwor" path="res://Scenes/Levels/Back Ground/bg.tscn" id="1_42ui2"]
+[ext_resource type="Texture2D" uid="uid://kjra0807qrh4" path="res://Assets/ThemeStuff/Raindrop.png" id="3_h11ry"]
+[ext_resource type="Texture2D" uid="uid://ynxx30yrgf5j" path="res://Assets/Characters/Player/frog_idle-Sheet.png" id="4_ty4bg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pxmoc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+angle_min = -20.0
+angle_max = -20.0
+gravity = Vector3(-90, 180, 0)
+
+[sub_resource type="Animation" id="Animation_wxjb3"]
+resource_name = "Lightning"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lightning:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 4.0, 0.5, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lightning:blend_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.2001, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_priri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lightning:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lightning:blend_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65vjs"]
+_data = {
+"Lightning": SubResource("Animation_wxjb3"),
+"RESET": SubResource("Animation_priri")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86tcr"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlswg"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0swmp"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijtvn"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueq8g"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o3x6"]
+atlas = ExtResource("4_ty4bg")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4r3tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86tcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlswg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0swmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijtvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueq8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o3x6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_5u1hq")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 354.0
@@ -59,3 +182,39 @@ theme_override_font_sizes/font_size = 96
 text = "FROG VERSUS RUSSES"
 
 [node name="BG" parent="." instance=ExtResource("1_42ui2")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(838, -87)
+scale = Vector2(9.82989, 1.24217)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_pxmoc")
+texture = ExtResource("3_h11ry")
+lifetime = 4.0
+
+[node name="Lightning" type="DirectionalLight2D" parent="."]
+energy = 0.0
+range_layer_min = -101
+range_layer_max = -33
+
+[node name="MenuAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_65vjs")
+}
+
+[node name="LightningTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -2
+position = Vector2(1158, 559)
+scale = Vector2(11.6688, 11.6688)
+sprite_frames = SubResource("SpriteFrames_4r3tf")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="LightningTimer" to="." method="_on_lightning_timer_timeout"]
