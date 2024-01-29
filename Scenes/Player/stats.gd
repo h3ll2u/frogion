@@ -14,7 +14,7 @@ var stamina_cost
 var attack_cost = 10
 var block_cost = 0.5
 var dodge_cost = 15
-var max_health = 10
+var max_health = 120
 var old_health = max_health
 
 
