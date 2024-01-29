@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv6okoh0wcthd"]
+
+[ext_resource type="Texture2D" uid="uid://dgh0nmn5ddpeo" path="res://Assets/Particles/circle.png" id="1_nw4el"]
+[ext_resource type="Script" path="res://Scenes/Levels/Effects/light_lantern.gd" id="2_kdvka"]
+
+[node name="LightLantern" type="PointLight2D"]
+color = Color(0.858824, 0.627451, 0, 1)
+texture = ExtResource("1_nw4el")
+script = ExtResource("2_kdvka")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

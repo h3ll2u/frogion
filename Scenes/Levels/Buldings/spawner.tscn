@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://dubrt4wnqfbue"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/Buldings/spawner.gd" id="1_lkbw3"]
+[ext_resource type="Texture2D" uid="uid://bicsfuxnh0x6q" path="res://Assets/Objects/Stones/2.png" id="1_rwot7"]
+[ext_resource type="Texture2D" uid="uid://bxsbot6g4nyg3" path="res://Assets/Objects/Stones/5.png" id="2_7io8e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veu2p"]
+atlas = ExtResource("1_rwot7")
+region = Rect2(0, 0, 47, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdh1p"]
+atlas = ExtResource("2_7io8e")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eavod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veu2p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdh1p")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_0c4gr"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+
+[sub_resource type="Animation" id="Animation_nbcxh"]
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["spawn"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enemy_spawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8p11"]
+_data = {
+"idle": SubResource("Animation_0c4gr"),
+"spawn": SubResource("Animation_nbcxh")
+}
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_lkbw3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eavod")
+animation = &"spawn"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a8p11")
+}

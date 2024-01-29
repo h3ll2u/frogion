@@ -695,7 +695,7 @@ func _process(delta):
 		print(fire_flies.emitting)
 
 
-func _on_change_time(state):
+func _on_change_time(state, day_count):
 	day_state = state
 	if state == 1:
 		fire_flies.emitting = true
