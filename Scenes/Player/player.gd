@@ -79,16 +79,18 @@ func move_state():
 	
 	if direction == -1:
 		animated_sprite_2d.flip_h = true
-		$AttackDirection.rotation_degrees = 180
+		#$AttackDirection.rotation_degrees = 180
 	elif direction == 1:
 		animated_sprite_2d.flip_h = false
-		$AttackDirection.rotation_degrees = 0
+		#$AttackDirection.rotation_degrees = 0
 		
 	if Input.is_action_just_pressed("attack"):
 		if mouse_direction.x <= -0.1:
 			animated_sprite_2d.flip_h = true
+			$AttackDirection.rotation_degrees = 180
 		elif mouse_direction.x >= -0.1:
 			animated_sprite_2d.flip_h = false
+			$AttackDirection.rotation_degrees = 0
 		state = ATTACK
 		if not recovery:
 			stats.stamina_cost = stats.attack_cost
