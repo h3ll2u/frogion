@@ -974,9 +974,6 @@ position = Vector2(-355, 661)
 [node name="Spawner2" parent="Mobs" instance=ExtResource("15_lk1it")]
 position = Vector2(1309, 666)
 
-[node name="SoldierBoy" parent="Mobs" instance=ExtResource("16_rxhgi")]
-position = Vector2(399, 646)
-
 [node name="Buildings" type="Node2D" parent="."]
 
 [node name="Castle" parent="Buildings" instance=ExtResource("15_463xc")]
@@ -1005,5 +1002,8 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_qni0g")
 }
+
+[node name="SoldierBoy" parent="." instance=ExtResource("16_rxhgi")]
+position = Vector2(866, 665)
 
 [connection signal="timeout" from="GlobalLight/DayNightChange" to="." method="_on_day_night_change_timeout"]

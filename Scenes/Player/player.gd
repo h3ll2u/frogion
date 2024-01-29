@@ -24,7 +24,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 var state = MOVE
-var damage_basic = 10
+var damage_basic = 50
 var damage_multiplier = 1
 var damage_current
 var recovery = false

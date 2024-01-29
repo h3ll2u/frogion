@@ -29,7 +29,6 @@ radius = 32.0624
 
 [node name="Castle" type="StaticBody2D"]
 collision_layer = 8
-collision_mask = 0
 script = ExtResource("1_pna1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,15 +55,14 @@ scale = Vector2(0.248968, 0.444585)
 
 [node name="HurtBox" parent="DamageBox" index="0"]
 scale = Vector2(1.19869, 1.0229)
-collision_layer = 0
-collision_mask = 64
+collision_layer = 64
 
 [node name="HurtCollision" parent="DamageBox/HurtBox" index="0"]
+position = Vector2(0, 15.6418)
 scale = Vector2(1.18498, 1.29952)
 
-[node name="HitBox" parent="DamageBox" index="1"]
-collision_layer = 0
-collision_mask = 0
+[node name="HitCollision" parent="DamageBox/HitBox" index="0"]
+position = Vector2(28, 18)
 
 [connection signal="area_entered" from="DamageBox/HurtBox" to="BuildingHealth" method="_on_hurt_box_area_entered"]
 

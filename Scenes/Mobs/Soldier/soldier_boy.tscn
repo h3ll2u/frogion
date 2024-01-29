@@ -500,12 +500,6 @@ libraries = {
 "": SubResource("AnimationLibrary_18h66")
 }
 
-[node name="HurtBox" parent="AttackDirection/DamageBox" index="0"]
-collision_layer = 32
-
-[node name="HitBox" parent="AttackDirection/DamageBox" index="1"]
-collision_layer = 64
-
 [node name="MobHealth" parent="." index="5" instance=ExtResource("7_4d76w")]
 position = Vector2(0, -21)
 scale = Vector2(0.233136, 0.233136)
