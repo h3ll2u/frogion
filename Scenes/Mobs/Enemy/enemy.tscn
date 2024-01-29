@@ -34,7 +34,7 @@ collision_mask = 32
 
 [node name="HitBox" parent="AttackDirection/DamageBox" index="1"]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 80
 
 [node name="HitCollision" parent="AttackDirection/DamageBox/HitBox" index="0"]
 position = Vector2(22, 0)

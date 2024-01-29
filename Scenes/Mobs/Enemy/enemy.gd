@@ -43,7 +43,7 @@ var state: int = 0:
 func _ready():
 	chase_state()
 	state = CHASE
-
+	Global.enemy_damage_global = damage
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -76,7 +76,6 @@ func attack_state():
 func chase_state():
 	animation_enemy.play("run")
 	direction = (player - self.position).normalized()
-	print(direction.x)
 	if direction.x > 0:
 		animated_sprite_2d.flip_h = false
 		$AttackDirection.rotation_degrees = 0

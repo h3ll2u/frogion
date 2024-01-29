@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c2yfgkl861v62"]
+[gd_scene load_steps=31 format=3 uid="uid://c2yfgkl861v62"]
 
 [ext_resource type="Texture2D" uid="uid://bm5tfangorupx" path="res://Assets/BackGrounds/Background layers/Layer_0010_1.png" id="1_ig33x"]
 [ext_resource type="Script" path="res://Scenes/Levels/First Level/first_level.gd" id="1_piohd"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://qck5p5qlf14t" path="res://Scenes/Player/player.tscn" id="13_4an33"]
 [ext_resource type="PackedScene" uid="uid://c4nm7ce2ry5fi" path="res://Scenes/Levels/Buldings/castle.tscn" id="15_463xc"]
 [ext_resource type="PackedScene" uid="uid://dubrt4wnqfbue" path="res://Scenes/Levels/Buldings/spawner.tscn" id="15_lk1it"]
+[ext_resource type="PackedScene" uid="uid://bartmj7rrskfg" path="res://Scenes/Mobs/Soldier/soldier_boy.tscn" id="16_rxhgi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i282s"]
 texture = ExtResource("12_3hi8i")
@@ -803,21 +804,6 @@ _data = {
 "night_anim": SubResource("Animation_t7xk6")
 }
 
-[sub_resource type="Animation" id="Animation_06fvx"]
-resource_name = "text_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DayText:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_g5gt4"]
 length = 0.001
 tracks/0/type = "value"
@@ -831,6 +817,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_06fvx"]
+resource_name = "text_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DayText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ewry6"]
@@ -969,6 +970,12 @@ libraries = {
 
 [node name="Spawner" parent="Mobs" instance=ExtResource("15_lk1it")]
 position = Vector2(-355, 661)
+
+[node name="Spawner2" parent="Mobs" instance=ExtResource("15_lk1it")]
+position = Vector2(1309, 666)
+
+[node name="SoldierBoy" parent="Mobs" instance=ExtResource("16_rxhgi")]
+position = Vector2(399, 646)
 
 [node name="Buildings" type="Node2D" parent="."]
 
