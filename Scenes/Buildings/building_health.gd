@@ -20,9 +20,12 @@ func _ready():
 	durability = max_durability
 	durability_bar.max_value = durability
 	durability_bar.value = durability
-
+	Signals.connect("enemy_died", Callable(self, "_on_enemy_died"))
 
 
 func _on_area_2d_area_entered(area):
 	durability -= Signals.enemy_super_dmg
 	print(str(Global.global_enemy_dmg), durability)
+
+func _on_enemy_died(enemy_position, state):
+	durability += 20

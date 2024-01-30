@@ -1,22 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4nm7ce2ry5fi"]
+[gd_scene load_steps=8 format=3 uid="uid://c4nm7ce2ry5fi"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Buldings/castle.gd" id="1_pna1o"]
-[ext_resource type="Texture2D" uid="uid://cxcslvec0vby7" path="res://Assets/Objects/Ridges/4.png" id="1_vq6q1"]
+[ext_resource type="Texture2D" uid="uid://dlt76v6hvc4aw" path="res://Assets/Objects/Buildings/castle_sprite.png" id="2_tme0q"]
 [ext_resource type="PackedScene" uid="uid://dv6okoh0wcthd" path="res://Scenes/Levels/Effects/light_lantern.tscn" id="2_urxv6"]
 [ext_resource type="PackedScene" uid="uid://cnvbfhs48omk" path="res://Scenes/Buildings/building_health.tscn" id="4_67dis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1by5b"]
 size = Vector2(65, 61)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mw46g"]
-atlas = ExtResource("1_vq6q1")
-region = Rect2(0, 0, 65, 61)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_h4vor"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mw46g")
+"texture": ExtResource("2_tme0q")
 }],
 "loop": true,
 "name": &"default",
@@ -40,12 +36,22 @@ collision_mask = 513
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 sprite_frames = SubResource("SpriteFrames_h4vor")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_q7nq6")
 
 [node name="LightLantern" parent="Area2D" instance=ExtResource("2_urxv6")]
+position = Vector2(7, -1)
+color = Color(0.972549, 0.866667, 0.0745098, 1)
+energy = 0.5
+
+[node name="LightLantern2" parent="Area2D" instance=ExtResource("2_urxv6")]
+position = Vector2(22, -14)
+energy = 0.5
 
 [node name="BuildingHealth" parent="." instance=ExtResource("4_67dis")]
+position = Vector2(-24, -47)
+scale = Vector2(0.255494, 0.255494)
 
 [connection signal="area_entered" from="Area2D" to="BuildingHealth" method="_on_area_2d_area_entered"]

@@ -1,22 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://dubrt4wnqfbue"]
+[gd_scene load_steps=11 format=3 uid="uid://dubrt4wnqfbue"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Buldings/spawner.gd" id="1_lkbw3"]
-[ext_resource type="Texture2D" uid="uid://bicsfuxnh0x6q" path="res://Assets/Objects/Stones/2.png" id="1_rwot7"]
-[ext_resource type="Texture2D" uid="uid://bxsbot6g4nyg3" path="res://Assets/Objects/Stones/5.png" id="2_7io8e"]
+[ext_resource type="Texture2D" uid="uid://cb8q0mqen36cu" path="res://Assets/Objects/Buildings/spawner-Sheet.png" id="2_yfedu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_veu2p"]
-atlas = ExtResource("1_rwot7")
-region = Rect2(0, 0, 47, 57)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c75"]
+size = Vector2(78, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tdh1p"]
-atlas = ExtResource("2_7io8e")
-region = Rect2(0, 0, 31, 31)
+[sub_resource type="AtlasTexture" id="AtlasTexture_typs6"]
+atlas = ExtResource("2_yfedu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3toe"]
+atlas = ExtResource("2_yfedu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2xe6"]
+atlas = ExtResource("2_yfedu")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eavod"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_veu2p")
+"texture": SubResource("AtlasTexture_typs6")
 }],
 "loop": true,
 "name": &"idle",
@@ -24,7 +30,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tdh1p")
+"texture": SubResource("AtlasTexture_g3toe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2xe6")
 }],
 "loop": true,
 "name": &"spawn",
@@ -69,10 +78,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -107,8 +116,13 @@ _data = {
 "spawn": SubResource("Animation_nbcxh")
 }
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="StaticBody2D"]
+scale = Vector2(2.14399, 2.0603)
+collision_layer = 2048
 script = ExtResource("1_lkbw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l1c75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eavod")

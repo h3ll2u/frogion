@@ -741,6 +741,7 @@ turbulence_enabled = true
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 2049
 script = ExtResource("1_orwsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -761,6 +762,8 @@ libraries = {
 offset = Vector2(0, -50)
 zoom = Vector2(3, 3)
 process_callback = 0
+limit_left = -700
+limit_right = 1950
 
 [node name="AttackDirection" type="Node2D" parent="."]
 

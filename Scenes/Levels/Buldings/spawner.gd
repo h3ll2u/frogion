@@ -1,6 +1,6 @@
-extends Node2D
+extends StaticBody2D
 
-
+@onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var mobs = $".."
 
@@ -9,8 +9,10 @@ var soldier_preload = preload("res://Scenes/Mobs/Soldier/soldier_boy.tscn")
 var spawn_count = 0
 
 
+
 func _ready():
 	Signals.connect("day_time", Callable(self, "_on_change_time"))
+
 
 
 func _on_change_time(state, day_count):
@@ -37,3 +39,4 @@ func soldier_spawn():
 	var soldier = soldier_preload.instantiate()
 	soldier.position = Vector2(self.position.x, self.position.y)
 	mobs.add_child(soldier)
+

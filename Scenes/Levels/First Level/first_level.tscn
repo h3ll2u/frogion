@@ -969,10 +969,13 @@ libraries = {
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Mobs" instance=ExtResource("15_lk1it")]
-position = Vector2(-355, 661)
+position = Vector2(-645, 624)
 
 [node name="Spawner2" parent="Mobs" instance=ExtResource("15_lk1it")]
-position = Vector2(1309, 666)
+position = Vector2(1883, 624)
+
+[node name="AnimatedSprite2D" parent="Mobs/Spawner2" index="1"]
+flip_h = true
 
 [node name="Buildings" type="Node2D" parent="."]
 
@@ -1007,3 +1010,5 @@ libraries = {
 position = Vector2(866, 665)
 
 [connection signal="timeout" from="GlobalLight/DayNightChange" to="." method="_on_day_night_change_timeout"]
+
+[editable path="Mobs/Spawner2"]
