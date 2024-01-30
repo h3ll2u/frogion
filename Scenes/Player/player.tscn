@@ -769,9 +769,10 @@ script = ExtResource("7_v3q58")
 
 [node name="HurtBox" parent="AttackDirection/DamageBox" index="0"]
 collision_layer = 16
+collision_mask = 256
 
 [node name="HitBox" parent="AttackDirection/DamageBox" index="1"]
-collision_layer = 64
+collision_layer = 128
 collision_mask = 32
 
 [node name="HitCollision" parent="AttackDirection/DamageBox/HitBox" index="0"]
@@ -806,6 +807,7 @@ process_material = SubResource("ParticleProcessMaterial_jljsd")
 texture = ExtResource("5_uqf2g")
 lifetime = 5.0
 
+[connection signal="area_entered" from="AttackDirection/DamageBox/HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="no_stamina" from="Stats" to="." method="_on_stats_no_stamina"]
 
 [editable path="AttackDirection/DamageBox"]

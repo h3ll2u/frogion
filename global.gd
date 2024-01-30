@@ -7,4 +7,4 @@ var player_damage
 
 var player_dead
 
-var enemy_damage_global
+var global_enemy_dmg

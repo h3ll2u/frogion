@@ -43,7 +43,7 @@ var state: int = 0:
 func _ready():
 	chase_state()
 	state = CHASE
-	Global.enemy_damage_global = damage
+	
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -55,7 +55,10 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	player = Global.player_pos
-
+	
+	Signals.enemy_super_dmg = damage
+	
+	
 func _on_attack_range_body_entered(_body):
 	state = ATTACK
 

@@ -22,5 +22,7 @@ func _ready():
 	durability_bar.value = durability
 
 
-func _on_hurt_box_area_entered(area):
-	durability -= Global.enemy_damage_global
+
+func _on_area_2d_area_entered(area):
+	durability -= Signals.enemy_super_dmg
+	print(str(Global.global_enemy_dmg), durability)

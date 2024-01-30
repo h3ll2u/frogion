@@ -56,3 +56,4 @@ func stamina_consuption ():
 
 func _on_health_regen_timeout():
 	health += 5
+

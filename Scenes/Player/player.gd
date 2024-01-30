@@ -144,17 +144,7 @@ func death_state():
 	Global.player_dead = true
 	
 func _on_damage_received(enemy_damage):
-	if state == BLOCK:
-		enemy_damage /= 2
-	elif state == DODGE:
-		enemy_damage = 0
-	else:
-		state = TAKING_HIT
-		damage_anim()
-	stats.health -= enemy_damage
-	if stats.health <= 0:
-		stats.health = 0
-		state = DEATH
+	pass
 
 
 func _on_stats_no_stamina():
@@ -174,3 +164,18 @@ func damage_anim():
 	tween.parallel().tween_property(self, "velocity", Vector2.ZERO, 0.1)
 	tween.parallel().tween_property(animated_sprite_2d, "modulate", Color(1, 1, 1, 1), 0.1)
 	
+
+
+func _on_hurt_box_area_entered(area):
+	await get_tree().create_timer(0.05).timeout
+	if state == BLOCK:
+		Signals.enemy_super_dmg /= 2
+	elif state == DODGE:
+		Signals.enemy_super_dmg = 0
+	else:
+		state = TAKING_HIT
+		damage_anim()
+	stats.health -= Signals.enemy_super_dmg
+	if stats.health <= 0:
+		stats.health = 0
+		state = DEATH
