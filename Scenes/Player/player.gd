@@ -6,6 +6,7 @@ enum {
 	ATTACK,
 	BLOCK,
 	DODGE,
+	BUILD,
 	TAKING_HIT,
 	DEATH
 }
@@ -16,11 +17,13 @@ const JUMP_VELOCITY = -400.0
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var preload_barrier = preload("res://Scenes/Levels/Buldings/barrier.tscn")
 
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
+@onready var buildings = $"../../Buildings"
 
 
 var state = MOVE
@@ -50,6 +53,8 @@ func _physics_process(delta):
 			block_state()
 		DODGE:
 			dodge_state()
+		BUILD:
+			build_state()
 		TAKING_HIT:
 			damage_state()
 		DEATH:
@@ -83,6 +88,14 @@ func move_state():
 	elif direction == 1:
 		animated_sprite_2d.flip_h = false
 		#$AttackDirection.rotation_degrees = 0
+	
+	if Input.is_action_just_pressed("build") and Global.gold >= 5:
+		var barrier = preload_barrier.instantiate()
+		barrier.position = Vector2(self.position.x, self.position.y)
+		buildings.add_child(barrier)
+		Global.gold -= 5
+		state = BUILD
+	
 		
 	if Input.is_action_just_pressed("attack") and not recovery:
 		if mouse_direction.x <= -0.1:
@@ -127,6 +140,13 @@ func attack_state():
 	damage_multiplier = 1
 	velocity.x = 0
 	animation_player.play("attack")
+	await animation_player.animation_finished
+	state = MOVE
+
+
+func build_state():
+	velocity.x = 0
+	animation_player.play("build")
 	await animation_player.animation_finished
 	state = MOVE
 

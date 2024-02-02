@@ -3,6 +3,7 @@ extends Node
 
 @onready var player = $"../Player/Player"
 @onready var pause_menu = $"../CanvasLayer/PauseMenu"
+@onready var buildings = $"../Buildings"
 
 
 var game_paused: bool = false
@@ -40,7 +41,6 @@ func load_game():
 	first_level.day_count = file.get_var(first_level.day_count)
 	player.position.x = file.get_var(player.position.x)
 	player.position.y = file.get_var(player.position.y)
-
 
 func _on_save_pressed():
 	save_game()

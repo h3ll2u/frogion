@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://qck5p5qlf14t"]
+[gd_scene load_steps=75 format=3 uid="uid://qck5p5qlf14t"]
 
 [ext_resource type="Texture2D" uid="uid://dwim5errwxpve" path="res://Assets/Characters/Player/Frog-32x32-new_idle-Sheet.png" id="1_6boiv"]
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_orwsp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bmqoc3ouxmcsl" path="res://Assets/Characters/Player/Frog-32x32-new_block-Sheet.png" id="3_pu3db"]
 [ext_resource type="Texture2D" uid="uid://boojv07yycik1" path="res://Assets/Characters/Player/Frog-32x32-new_death2-Sheet.png" id="4_oeniq"]
 [ext_resource type="Texture2D" uid="uid://byt1r4ixav32l" path="res://Assets/Characters/Player/Frog-32x32-new_run-Sheet.png" id="4_rievp"]
+[ext_resource type="Texture2D" uid="uid://wglviivvn6ji" path="res://Assets/Characters/Player/Frog-32x32-new_taking_hit-Sheet.png" id="4_vxb36"]
 [ext_resource type="Texture2D" uid="uid://cfitgg4d23nnw" path="res://Assets/Characters/Player/Frog-32x32-new_dodge-Sheet.png" id="5_iycbd"]
 [ext_resource type="Texture2D" uid="uid://mr2cufn1pwa1" path="res://Assets/Particles/ELR_FireFlies.png" id="5_uqf2g"]
 [ext_resource type="PackedScene" uid="uid://ihvopg35ytpo" path="res://Scenes/DamageBox/damage_box.tscn" id="6_p61sy"]
@@ -40,6 +41,18 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mllxp"]
 atlas = ExtResource("3_pu3db")
 region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1l73"]
+atlas = ExtResource("4_vxb36")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tawg1"]
+atlas = ExtResource("4_vxb36")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj1qo"]
+atlas = ExtResource("4_vxb36")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcusa"]
 atlas = ExtResource("4_oeniq")
@@ -185,6 +198,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1l73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tawg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj1qo")
+}],
+"loop": false,
+"name": &"build",
 "speed": 5.0
 }, {
 "frames": [{
@@ -421,6 +448,33 @@ tracks/3/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_5wyio"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["build"]
+}
+
 [sub_resource type="Animation" id="Animation_qp3ci"]
 length = 1.8
 tracks/0/type = "value"
@@ -577,6 +631,7 @@ _data = {
 "RESET": SubResource("Animation_b5tbn"),
 "attack": SubResource("Animation_pr1qj"),
 "block": SubResource("Animation_lfyv1"),
+"build": SubResource("Animation_5wyio"),
 "death": SubResource("Animation_qp3ci"),
 "dodge": SubResource("Animation_n5a00"),
 "idle": SubResource("Animation_usqyk"),
@@ -749,9 +804,8 @@ shape = SubResource("CapsuleShape2D_2kjry")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wrikt")
-animation = &"death"
+animation = &"build"
 autoplay = "idle"
-frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwq21stdidskd"]
+
+[ext_resource type="PackedScene" uid="uid://c4nm7ce2ry5fi" path="res://Scenes/Levels/Buldings/castle.tscn" id="1_2rfja"]
+[ext_resource type="Texture2D" uid="uid://tme1gfssxv58" path="res://Assets/Objects/Boxes/4.png" id="2_b0gnf"]
+[ext_resource type="Script" path="res://Scenes/Levels/Buldings/barrier.gd" id="2_tb72w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhx6v"]
+size = Vector2(33, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gspb"]
+atlas = ExtResource("2_b0gnf")
+region = Rect2(0, 0, 33, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s24lv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gspb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2d3f"]
+radius = 17.0
+
+[node name="Barrier" instance=ExtResource("1_2rfja")]
+script = ExtResource("2_tb72w")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_lhx6v")
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_s24lv")
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CircleShape2D_u2d3f")
