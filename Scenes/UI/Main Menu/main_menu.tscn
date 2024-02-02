@@ -216,5 +216,6 @@ autoplay = "idle"
 flip_h = true
 
 [connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="LightningTimer" to="." method="_on_lightning_timer_timeout"]

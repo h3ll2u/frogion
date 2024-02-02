@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://76wb8qxvf4q1"]
+[gd_scene load_steps=7 format=3 uid="uid://76wb8qxvf4q1"]
 
 [ext_resource type="Texture2D" uid="uid://dkvvc7mb7cjbf" path="res://Assets/Characters/Player/PlayerUI/empty_health_mob.png" id="1_5tk4c"]
 [ext_resource type="Script" path="res://Scenes/Player/stats.gd" id="1_op4d2"]
 [ext_resource type="Texture2D" uid="uid://dsh8jyr56fgne" path="res://Assets/Characters/Player/PlayerUI/progress_health_mob.png" id="2_v2ner"]
 [ext_resource type="Texture2D" uid="uid://r2uukvnlnrr1" path="res://Assets/Characters/Player/PlayerUI/empty_stamina_mob.png" id="3_co6yu"]
 [ext_resource type="Texture2D" uid="uid://ridawjew608g" path="res://Assets/Characters/Player/PlayerUI/progress_stamina_mob.png" id="4_8lopu"]
+[ext_resource type="Texture2D" uid="uid://cw068sok5603o" path="res://Assets/Objects/Collectibles/spr_coin_roj.png" id="6_dc6bg"]
 
 [node name="Stats" type="CanvasLayer"]
 script = ExtResource("1_op4d2")
@@ -30,5 +31,19 @@ tint_progress = Color(0.494118, 1, 0.329412, 1)
 
 [node name="HealthRegen" type="Timer" parent="."]
 autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 79)
+texture = ExtResource("6_dc6bg")
+hframes = 4
+
+[node name="CoinCounter" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 71.0
+offset_right = 48.0
+offset_bottom = 88.0
+text = "- 20"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]

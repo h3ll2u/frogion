@@ -84,7 +84,7 @@ func move_state():
 		animated_sprite_2d.flip_h = false
 		#$AttackDirection.rotation_degrees = 0
 		
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and not recovery:
 		if mouse_direction.x <= -0.1:
 			animated_sprite_2d.flip_h = true
 			$AttackDirection.rotation_degrees = 180

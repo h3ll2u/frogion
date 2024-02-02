@@ -20,14 +20,14 @@ var state = MORNING
 var day_count: int
 
 func _ready():
+	Global.gold = 0
 	_on_day_night_change_timeout()
 	day_count = 1
 	set_day_text()
 	day_text_fade()
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://Scenes/UI/Main Menu/main_menu.tscn")
+	pass
 
 func _on_day_night_change_timeout():
 	match state:

@@ -18,10 +18,12 @@ enum {
 @onready var animation_enemy = $AnimationEnemy
 
 
+@export var damage = 20
+
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player = Vector2.ZERO
 var direction = Vector2.ZERO
-var damage = 20
 var move_speed = 150
 
 var state: int = 0:

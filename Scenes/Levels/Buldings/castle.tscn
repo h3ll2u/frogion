@@ -32,7 +32,7 @@ shape = SubResource("RectangleShape2D_1by5b")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 72
-collision_mask = 513
+collision_mask = 515
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 sprite_frames = SubResource("SpriteFrames_h4vor")
@@ -55,3 +55,4 @@ position = Vector2(-24, -47)
 scale = Vector2(0.255494, 0.255494)
 
 [connection signal="area_entered" from="Area2D" to="BuildingHealth" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="BuildingHealth" method="_on_area_2d_body_entered"]

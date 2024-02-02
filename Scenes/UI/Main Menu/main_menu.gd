@@ -22,3 +22,7 @@ func _on_lightning_timer_timeout():
 	var rng = randi_range(10, 20)
 	menu_animation.play("Lightning")
 	lightning_timer.wait_time = rng
+
+
+func _on_load_pressed():
+	pass

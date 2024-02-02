@@ -5,6 +5,7 @@ extends StaticBody2D
 @onready var mobs = $".."
 
 
+var berserk_preload = preload("res://Scenes/Mobs/Berserk/berserk.tscn")
 var soldier_preload = preload("res://Scenes/Mobs/Soldier/soldier_boy.tscn")
 var spawn_count = 0
 
@@ -32,7 +33,11 @@ func _on_change_time(state, day_count):
 		
 	
 func enemy_spawn():
-	soldier_spawn()
+	var rng = randi_range(1, 2)
+	if rng == 1:
+		soldier_spawn()
+	elif rng == 2:
+		berserk_spawn()
 	
 
 func soldier_spawn():
@@ -40,3 +45,7 @@ func soldier_spawn():
 	soldier.position = Vector2(self.position.x, self.position.y)
 	mobs.add_child(soldier)
 
+func berserk_spawn():
+	var berserk = berserk_preload.instantiate()
+	berserk.position = Vector2(self.position.x, self.position.y)
+	mobs.add_child(berserk)

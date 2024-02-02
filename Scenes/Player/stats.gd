@@ -8,6 +8,7 @@ signal no_stamina ()
 @onready var stamina_bar = $Stamina
 @onready var health_text = $"../HealthText"
 @onready var health_anim = $"../HealthAnim"
+@onready var coin_counter = $CoinCounter
 
 
 var stamina_cost
@@ -44,11 +45,12 @@ func _ready():
 	health_bar.max_value = health
 	health_bar.value = health
 
+
 func _process(delta):
 	stamina_bar.value = stamina
 	if stamina < 100:
 		stamina += 10 * delta
-		
+	coin_counter.text = str(Global.gold)	
 
 func stamina_consuption ():
 	stamina -= stamina_cost

@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2yfgkl861v62"]
+[gd_scene load_steps=33 format=3 uid="uid://c2yfgkl861v62"]
 
 [ext_resource type="Texture2D" uid="uid://bm5tfangorupx" path="res://Assets/BackGrounds/Background layers/Layer_0010_1.png" id="1_ig33x"]
 [ext_resource type="Script" path="res://Scenes/Levels/First Level/first_level.gd" id="1_piohd"]
+[ext_resource type="Script" path="res://Scenes/Levels/First Level/Manager.gd" id="2_4u00s"]
 [ext_resource type="Texture2D" uid="uid://ce0lc4qk4sb3x" path="res://Assets/BackGrounds/Background layers/Layer_0011_0.png" id="2_26q4f"]
 [ext_resource type="Texture2D" uid="uid://ygkxgcnrtokt" path="res://Assets/BackGrounds/Background layers/Layer_0008_3.png" id="3_75kdl"]
 [ext_resource type="Texture2D" uid="uid://dpjyfw2yfjgce" path="res://Assets/BackGrounds/Background layers/Layer_0007_Lights.png" id="4_1talr"]
@@ -16,7 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://qck5p5qlf14t" path="res://Scenes/Player/player.tscn" id="13_4an33"]
 [ext_resource type="PackedScene" uid="uid://c4nm7ce2ry5fi" path="res://Scenes/Levels/Buldings/castle.tscn" id="15_463xc"]
 [ext_resource type="PackedScene" uid="uid://dubrt4wnqfbue" path="res://Scenes/Levels/Buldings/spawner.tscn" id="15_lk1it"]
-[ext_resource type="PackedScene" uid="uid://bartmj7rrskfg" path="res://Scenes/Mobs/Soldier/soldier_boy.tscn" id="16_rxhgi"]
+[ext_resource type="PackedScene" uid="uid://ch4hdg5mjrdbh" path="res://Scenes/UI/Pause Menu/pause_menu.tscn" id="18_liv53"]
+[ext_resource type="Script" path="res://Scenes/Levels/First Level/Collectibles.gd" id="19_rrv2o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i282s"]
 texture = ExtResource("12_3hi8i")
@@ -859,6 +861,10 @@ _data = {
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_piohd")
 
+[node name="Manager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("2_4u00s")
+
 [node name="BG" type="ParallaxBackground" parent="."]
 offset = Vector2(663, 850)
 scale = Vector2(0.65, 0.65)
@@ -1006,9 +1012,16 @@ libraries = {
 "": SubResource("AnimationLibrary_qni0g")
 }
 
-[node name="SoldierBoy" parent="." instance=ExtResource("16_rxhgi")]
-position = Vector2(866, 665)
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("18_liv53")]
+
+[node name="Collectibles" type="Node2D" parent="."]
+script = ExtResource("19_rrv2o")
 
 [connection signal="timeout" from="GlobalLight/DayNightChange" to="." method="_on_day_night_change_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Resume" to="Manager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Save" to="Manager" method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Load" to="Manager" method="_on_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Quit" to="Manager" method="_on_quit_pressed"]
 
 [editable path="Mobs/Spawner2"]
+[editable path="CanvasLayer/PauseMenu"]
