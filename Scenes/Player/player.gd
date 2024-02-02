@@ -4,6 +4,7 @@ extends CharacterBody2D
 enum {
 	MOVE,
 	ATTACK,
+	ATTACK2,
 	BLOCK,
 	DODGE,
 	BUILD,
@@ -27,10 +28,11 @@ var preload_barrier = preload("res://Scenes/Levels/Buldings/barrier.tscn")
 
 
 var state = MOVE
-var damage_basic = 50
+var damage_basic = 25
 var damage_multiplier = 1
 var damage_current
 var recovery = false
+var combo = false
 
 func _ready():
 	Signals.connect("enemy_attack", Callable(self, "_on_damage_received"))
@@ -49,6 +51,8 @@ func _physics_process(delta):
 			move_state()
 		ATTACK:
 			attack_state()
+		ATTACK2:
+			attack2_state()
 		BLOCK:
 			block_state()
 		DODGE:
@@ -98,6 +102,7 @@ func move_state():
 	
 		
 	if Input.is_action_just_pressed("attack") and not recovery:
+		print(combo)
 		if mouse_direction.x <= -0.1:
 			animated_sprite_2d.flip_h = true
 			$AttackDirection.rotation_degrees = 180
@@ -138,10 +143,26 @@ func dodge_state():
 func attack_state():
 	stats.stamina_cost = stats.attack_cost
 	damage_multiplier = 1
+	if Input.is_action_just_pressed("attack") and combo == true and stats.stamina > stats.stamina_cost:
+		state = ATTACK2
 	velocity.x = 0
 	animation_player.play("attack")
 	await animation_player.animation_finished
 	state = MOVE
+
+
+func attack2_state():
+	stats.stamina_cost = stats.attack_cost
+	damage_multiplier = 1.5
+	animation_player.play("attack2")
+	await animation_player.animation_finished
+	state = MOVE
+
+
+func combo_button():
+	combo = true
+	await animation_player.animation_finished
+	combo = false
 
 
 func build_state():
