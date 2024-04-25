@@ -37,6 +37,7 @@ var combo = false
 func _ready():
 	Signals.connect("enemy_attack", Callable(self, "_on_damage_received"))
 
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -88,10 +89,8 @@ func move_state():
 	
 	if direction == -1:
 		animated_sprite_2d.flip_h = true
-		#$AttackDirection.rotation_degrees = 180
 	elif direction == 1:
 		animated_sprite_2d.flip_h = false
-		#$AttackDirection.rotation_degrees = 0
 	
 	if Input.is_action_just_pressed("build") and Global.gold >= 5:
 		var barrier = preload_barrier.instantiate()
@@ -99,17 +98,17 @@ func move_state():
 		buildings.add_child(barrier)
 		Global.gold -= 5
 		state = BUILD
-	
 		
 	if Input.is_action_just_pressed("attack") and not recovery:
-		print(combo)
 		if mouse_direction.x <= -0.1:
 			animated_sprite_2d.flip_h = true
 			$AttackDirection.rotation_degrees = 180
 		elif mouse_direction.x >= -0.1:
 			animated_sprite_2d.flip_h = false
 			$AttackDirection.rotation_degrees = 0
+		
 		state = ATTACK
+		
 		if not recovery:
 			stats.stamina_cost = stats.attack_cost
 			if stats.stamina > stats.stamina_cost:
@@ -130,6 +129,7 @@ func block_state():
 	stats.stamina -= stats.block_cost
 	velocity.x = 0
 	animation_player.play("block")
+	
 	if Input.is_action_just_released("block") or recovery:
 		state = MOVE
 
@@ -137,6 +137,7 @@ func block_state():
 func dodge_state():
 	animation_player.play("dodge")
 	await animation_player.animation_finished
+	
 	state = MOVE
 
 	
@@ -145,9 +146,11 @@ func attack_state():
 	damage_multiplier = 1
 	if Input.is_action_just_pressed("attack") and combo == true and stats.stamina > stats.stamina_cost:
 		state = ATTACK2
+	
 	velocity.x = 0
 	animation_player.play("attack")
 	await animation_player.animation_finished
+	
 	state = MOVE
 
 
@@ -183,6 +186,7 @@ func death_state():
 	animation_player.play("death")
 	await animation_player.animation_finished
 	Global.player_dead = true
+
 	
 func _on_damage_received(enemy_damage):
 	pass
@@ -201,11 +205,12 @@ func damage_anim():
 		velocity.x += 200
 	else:
 		velocity.x -= 200
+	
 	var tween = get_tree().create_tween()
+	
 	tween.parallel().tween_property(self, "velocity", Vector2.ZERO, 0.1)
 	tween.parallel().tween_property(animated_sprite_2d, "modulate", Color(1, 1, 1, 1), 0.1)
 	
-
 
 func _on_hurt_box_area_entered(area):
 	await get_tree().create_timer(0.05).timeout
@@ -217,6 +222,7 @@ func _on_hurt_box_area_entered(area):
 		state = TAKING_HIT
 		damage_anim()
 	stats.health -= Signals.enemy_super_dmg
+	
 	if stats.health <= 0:
 		stats.health = 0
 		state = DEATH

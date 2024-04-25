@@ -8,7 +8,6 @@ extends Node2D
 var max_durability = 120
 var old_durability = max_durability
 
-
 var durability:
 	set(value):
 		durability = clamp(value, 0, max_durability)
@@ -27,11 +26,9 @@ func _on_area_2d_area_entered(area):
 	durability -= Signals.enemy_super_dmg / 3
 	print(str(Global.global_enemy_dmg), durability)
 
+
 func _on_enemy_died(enemy_position, state):
 	durability += 0
-
-
-
 
 
 func _on_area_2d_body_entered(body):

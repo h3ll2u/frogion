@@ -18,12 +18,12 @@ var health = 100:
 		else:
 			health_bar.visible = true
 
+
 func _ready():
 	damage_text.modulate.a = 0
 	health_bar.max_value = max_health
 	health = max_health
 	health_bar.visible = false
-
 
 
 func _on_hurt_box_area_entered(_area):

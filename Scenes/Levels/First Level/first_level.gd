@@ -19,6 +19,7 @@ enum {
 var state = MORNING
 var day_count: int
 
+
 func _ready():
 	Global.gold = 0
 	_on_day_night_change_timeout()
@@ -26,8 +27,10 @@ func _ready():
 	set_day_text()
 	day_text_fade()
 
+
 func _process(delta):
 	pass
+
 
 func _on_day_night_change_timeout():
 	match state:
@@ -39,6 +42,7 @@ func _on_day_night_change_timeout():
 			evening_state()
 		NIGHT:
 			night_state()
+			
 	if state == 0:
 		state += 1
 	elif state < 3:

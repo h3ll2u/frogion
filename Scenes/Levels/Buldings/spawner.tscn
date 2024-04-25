@@ -125,7 +125,7 @@ shape = SubResource("RectangleShape2D_l1c75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eavod")
-animation = &"spawn"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -33,6 +33,7 @@ var health:
 		var difference = health - old_health
 		health_text.text = str(difference)
 		old_health = health
+		
 		if difference < 0:
 			health_anim.play("damage_received")
 		if difference > 0:
@@ -51,6 +52,7 @@ func _process(delta):
 	if stamina < 100:
 		stamina += 10 * delta
 	coin_counter.text = str(Global.gold)	
+
 
 func stamina_consuption ():
 	stamina -= stamina_cost

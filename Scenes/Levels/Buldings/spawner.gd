@@ -10,10 +10,8 @@ var soldier_preload = preload("res://Scenes/Mobs/Soldier/soldier_boy.tscn")
 var spawn_count = 0
 
 
-
 func _ready():
 	Signals.connect("day_time", Callable(self, "_on_change_time"))
-
 
 
 func _on_change_time(state, day_count):
@@ -24,9 +22,9 @@ func _on_change_time(state, day_count):
 			animation_player.play("spawn")
 			await animation_player.animation_finished
 			spawn_count += 1
+			print(spawn_count, " - spawn_count")
 	if state == 3:
 		animation_player.play("idle")
-	
 	
 	if spawn_count == day_count + rng:
 		animation_player.play("idle")
@@ -44,6 +42,7 @@ func soldier_spawn():
 	var soldier = soldier_preload.instantiate()
 	soldier.position = Vector2(self.position.x, self.position.y)
 	mobs.add_child(soldier)
+
 
 func berserk_spawn():
 	var berserk = berserk_preload.instantiate()

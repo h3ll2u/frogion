@@ -42,6 +42,7 @@ func load_game():
 	player.position.x = file.get_var(player.position.x)
 	player.position.y = file.get_var(player.position.y)
 
+
 func _on_save_pressed():
 	save_game()
 	game_paused = !game_paused
